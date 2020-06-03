@@ -10,8 +10,8 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-  @Get('name')
-  @Redirect('https://nestjs.com', 302)
+  @Get('redirect')
+  @Redirect('https://hassanrazamohdtufail.web.app/', 302)
   getHassan(@Req() request: Request): string {
     return this.appService.getName(request);
   }
@@ -21,9 +21,9 @@ export class AppController {
     console.log(request)
     return {data:request.route}
   }
-  @Get(':id')
-findOne(@Param() params): string {
-  console.log(params.id);
-  return `This action returns a #${params.id} cat`;
-}
+//   @Get(':id')
+// findOne(@Param() params): string {
+//   console.log(params.id);
+//   return `This action returns a #${params.id} cat`;
+// }
 }
