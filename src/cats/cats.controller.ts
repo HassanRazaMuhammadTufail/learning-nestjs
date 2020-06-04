@@ -30,16 +30,25 @@
 // }
 
 
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseFilters } from '@nestjs/common';
 import { CreateCatDto } from './dto/cats.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './interfaces/cats.interface';
+import { HttpExceptionFilter } from '../exceptionHandlers/http-exception.filter';
 
 @Controller('cats')
+/**
+ * exception handling for whole controller
+ */
+@UseFilters(new HttpExceptionFilter())
 export class CatsController {
   constructor(private catsService: CatsService) {}
 
   @Post()
+  /**
+   * exception handling of this specific route
+   */
+  @UseFilters(new HttpExceptionFilter())
   async create(@Body() createCatDto: CreateCatDto) {
     this.catsService.create(createCatDto);
   }
